@@ -24,9 +24,8 @@ class User < ApplicationRecord
 
   has_many :friend_as, through: :friendships_as_friend_b
   has_many :friend_bs, through: :friendships_as_friend_a
+end
 
   def friendships
     self.friendships_as_friend_a + self.friendships_as_friend_b
   end
-
-end
