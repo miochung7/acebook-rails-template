@@ -1,0 +1,16 @@
+<h1>List of friends waiting for your approval</h1>
+
+<tbody>
+<% @friendship.each do |friend| %>
+      <tr>
+          <td><%= friend.status %></td>
+          <td><%= friend.friend.username %></td>
+          <td><%= friend.user.username %></td>
+          <%= link_to 'Accept', method: :update %>
+      
+  <%end %>
+
+
+</tbody>
+
+

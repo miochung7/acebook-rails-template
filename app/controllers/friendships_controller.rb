@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
 
-  def new
-
+  def index
+    @friendship = Friendship.all
   end
 
   def create
