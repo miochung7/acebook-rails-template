@@ -6,7 +6,10 @@
 <table >
   <thead>
     <tr>
-      <%# <th>Post</th> %>
+      <th></th>
+      <th>Post ID</th>
+      <th>Username</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,22 +20,45 @@
       <tr>
 
         <td><%= post.post %></td> 
+        <td><%= post.id %></td> 
          <td><%= post.user.username %></td>
-
          <td><%= post.user.first_name  %> <%= post.user.last_name%></td>
-
-
         <td><%= post.created_at.strftime("%A, %d %B %Y %l:%M%p") %></td>
         <td><%= time_ago_in_words(post.created_at, :limit => 1.day.ago) %> ago</td>
+        </tr>
+
+        <td>
+        <div class="comment-box">
+        <%= form_for @comment do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <div class="input-group-append">
+        <%= f.text_field :body, placeholder: "Add comment here..." %>
+        <div class="input-group-append">
+        <%= f.submit "Post", class: "small-btn btn-success" %>
+        </div>
+        <% end %>
+        </div>
         
+
+        <%= post.comments.each do |comment| %>
+          <strong><%= comment.user.username %>:</strong>
+          <%= comment.body %>
+        <% end %>
+        </td>
+        
+
+      
+        
+        <tr>
         <% if current_user === post.user %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
          <% end %>
-      </tr>
+        </tr>
     <% end %>
-
-
   </tbody>
 </table>
 

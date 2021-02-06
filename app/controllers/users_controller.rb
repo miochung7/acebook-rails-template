@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @comment = Comment.new
   end
 
   # GET /users/1
