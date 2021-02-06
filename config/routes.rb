@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
+=======
+>>>>>>> 528ec09e8eeb066bb0683e2d1c49538395410ee8
   resources :friendships, :path => 'friends' do
     get '/status', to: 'friends#status', on: :member
     member do
@@ -17,8 +20,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+<<<<<<< HEAD
   resources :posts
   resources :comments, only: [:create]
+=======
+  resources :posts do
+    resources :comments
+  end
+>>>>>>> 528ec09e8eeb066bb0683e2d1c49538395410ee8
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
