@@ -24,8 +24,18 @@
          <td><%= post.user.username %></td>
          <td><%= post.user.first_name  %> <%= post.user.last_name%></td>
         <td><%= post.created_at.strftime("%A, %d %B %Y %l:%M%p") %></td>
-        <td><%= time_ago_in_words(post.created_at, :limit => 1.day.ago) %> ago</td>
-        </tr>
+        <td><%= time_ago_in_words(post.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h')%> ago</td>
+      </tr>
+      <tr>
+        <% if current_user === post.user %>
+        <td>
+        <div class="buttons-edit-delete">
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        </td>
+         <% end %>
+         </tr>
 
         <td>
         <div class="comment-box">
@@ -33,32 +43,29 @@
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :post_id, value: post.id %>
         <div class="input-group-append">
-        <%= f.text_field :body, placeholder: "Add comment here..." %>
+        <%= f.text_field :body, placeholder: "Write a comment..." %>
         <div class="input-group-append">
         <%= f.submit "Post", class: "small-btn btn-success" %>
         </div>
+        </div>
         <% end %>
         </div>
-        
+        <br>
 
-        <%= post.comments.each do |comment| %>
-          <strong><%= comment.user.username %>:</strong>
-          <%= comment.body %>
+        <% post.comments.each do |comment| %>
+          <strong class="comments-username"><%= comment.user.username %></strong>
+          <div class="comments"><%= comment.body %></div>
+          <div class="comments-time text-muted">
+          <%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago
+          </div>
         <% end %>
+ 
         </td>
         
-
-      
         
-        <tr>
-        <% if current_user === post.user %>
-        <td>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-         <% end %>
         </tr>
     <% end %>
+    
   </tbody>
 </table>
 
