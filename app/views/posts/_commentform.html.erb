@@ -1,0 +1,14 @@
+   <div class="comment-box">
+      <%= form_for @comment do |f| %>
+      <% @posts.each do |post| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+         <%= f.hidden_field :post_id, value: post.id %>
+      <% end %>
+      <div class="input-group-append">
+        <%= f.text_field :body, placeholder: "Add comment here..." %>
+      <div class="input-group-append">
+        <%= f.submit "Post", class: "small-btn btn-success" %>
+      </div>
+        <% end %>
+       
+    </div>

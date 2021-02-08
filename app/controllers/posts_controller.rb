@@ -7,7 +7,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC")
+    @comment = Comment.new
+    # @comment = @post.comments
   end
 
   # GET /posts/1
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
 
   def new
     # @post = Post.new
-    p @post = current_user.posts.build
+    @post = current_user.posts.build
 
   end
 
@@ -30,9 +32,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    # @post = Post.new(post_params)
+ 
     @post = current_user.posts.build(post_params)
-
+    
+ 
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
