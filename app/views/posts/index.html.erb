@@ -4,26 +4,6 @@
 <h1>Posts</h1>
 <%= render "posts/feeds"%>
 
-  <div class="comment-box">
-     <%= form_for @comment do |f| %>
-       <%= f.hidden_field :user_id, value: current_user.id %>
-       <%= f.hidden_field :post_id, value: post.id %>
-       <div class="input-group-append">
-       <%= f.text_field :body, placeholder: "Write a comment..." %>
-       <div class="input-group-append">
-       <%= f.submit "Post", class: "small-btn btn-success" %>
-       </div>
-       </div>
-      <% end %>
-     </div>
-      
-        <% post.comments.each do |comment| %>
-          <strong class="comments-username"><%= comment.user.username %></strong>
-          <div class="comments"><%= comment.body %></div>
-          <div class="comments-time text-muted">
-          <%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago
-          </div>
-        <% end %>
-    <% end %>
- 
+
+
 <%= link_to 'New Post', new_post_path %>
