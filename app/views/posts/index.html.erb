@@ -4,21 +4,6 @@
 <h1>Posts</h1>
 <%= render "posts/feeds"%>
 
-  <% @posts.each do |post| %>
-
-      <div><%= post.post %></div>
-      <div><%= post.user.username %></div>
-      <div><%= post.user.first_name  %> <%= post.user.last_name%></div>
-      <div><%= post.created_at.strftime("%A, %d %B %Y %l:%M%p") %></div>
-      <div><%= time_ago_in_words(post.created_at, :limit => 1.day.ago) %> ago</div>
-
-    <% if current_user === post.user %>
-      <div><%= link_to 'Edit', edit_post_path(post) %></div>
-      <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-    <% end %>
-  <% end %>
-
-
 <br>
 
 <%= link_to 'New Post', new_post_path %>
