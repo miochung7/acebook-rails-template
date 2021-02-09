@@ -8,7 +8,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row row-cols-5 mb-5">
+
 <% @users.each do |user| %>
+<% if current_user.id != user.id %>
 
 
   <div class="col mb-5">
@@ -24,7 +26,7 @@
       </ul>
     </div>
   </div>
-    
+<% end %>
 <% end %>
 </div>
 
