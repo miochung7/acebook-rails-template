@@ -44,9 +44,25 @@
 
 <!--card footer-->
     <div class="card-footer">
-        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+        <%# <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> %>
+        <!--Like link-->
+        <a class="card-link">
+          <i class="fa fa-gittip"></i>
+
+          <% pre_like = post.likes.find {|like| like.user_id == current_user.id}%>
+
+          <%if pre_like%>
+            <%= link_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+          <%else%>
+            <%= link_to 'Like', post_likes_path(post), method: :post %>
+          <%end%>
+        </a>
+
+        <!--Comment link-->
         <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-        <%# <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> %>
+
+        <!--Like Count-->
+        <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%>
     </div>        
 
   </div>
