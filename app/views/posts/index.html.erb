@@ -9,30 +9,31 @@
 
 <div class="container-fluid gedf-wrapper mt-5">
 
-        <div class="row">
+  <div class="row">
 
-             <!--- First column  -->
-            <div class="col-md-3">
+      <!--- First column  -->
+    <div class="col-md-3">
 
-              <!--- profile card -->
-              <%= render "users/profilecard"%>
-                
-            </div>
+      <!--- profile card -->
+      <%= render "users/profilecard"%>
+        
+    </div>
             
 
 
-            <!--- Second column  -->
-            <div class="col-md-6 gedf-main">
+    <!--- Second column  -->
+    <div class="col-md-6 gedf-main">
 
-                <!--- create New Post Button-->
+        <!--- create New Post Button-->
 
-                 <%= link_to "Create a new Post", new_post_path, class:"btn btn-primary btn-block py-2 mb-3" %>
-                
-                
-                <!-- Profile posts-->
+          <%= link_to "Create a new Post", new_post_path, class:"btn btn-primary btn-block py-2 mb-3" %>
+        
+        
+        <!-- Profile posts-->
 
-                <%= render "posts/feeds"%>
-
-            </div>
+        <%= render "posts/feeds"%>
+    </div>
+  </div>
+</div>
 
 

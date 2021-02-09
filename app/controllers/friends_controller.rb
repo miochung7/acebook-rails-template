@@ -68,6 +68,13 @@ class FriendsController < ApplicationController
     @friend = current_user.friends.find_by(id: params[:id])
     redirect_to friends_path, notice: 'not authorised to edit this friends' if @friend.nil?
   end
+
+  def delete
+    @friendship = current_user.inverse_friendships.find(params[:id])
+    @friendship.destroy
+    redirect_back fallback_location: root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
@@ -78,4 +85,5 @@ class FriendsController < ApplicationController
     def friend_params
       params.require(:friend).permit(:first_name, :last_name, :email, :username, :user_id)
     end
+
 end

@@ -1,9 +1,8 @@
-<div class="jumbotron jumbotron-fluid "  style="background-image: url(https://d16yj43vx3i1f6.cloudfront.net/uploads/2020/10/Diversity.jpg); background-size: 100%; background-position-y: 5%;">
-  <div class="container">
-    <h1 class="display-4  text-white">Friends</h1>
-  </div>
-</div>
+<!--- Renders the text/heading on the Jumbo header  -->
+<% @banner_title = 'Friends' %>
 
+<!--- Jumbo header  -->
+<%= render "users/profileheader"%>
  
 <div class="row">
 
@@ -11,7 +10,6 @@
     <% # Displays the list of friends of both relationships if status equals to true %>
     <h4> Your Friends List</h4>
 
-    <!--line 16 to 30 doesn't display on browser not sure what it does -sarah -->
     <div class="row row-cols-3">
     <% @friendships.each do |friendship| %>
       <% if friendship.status === 't' %>
@@ -24,6 +22,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= friendship.friend.first_name %> <%= friendship.friend.last_name %></li>
               <li class="list-group-item"><%= link_to 'Show', friendship.friend %></li>
+              <li class="list-group-item"><%= link_to "Delete Friend", friendship_path(friendship), :method => :delete %></li>
             </ul>
           </div>
         </div>
@@ -43,6 +42,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= friendship.user.first_name %> <%= friendship.user.last_name %></li>
               <li class="list-group-item"><%= link_to 'Show', friendship.user %></li>
+              <li class="list-group-item"><%= link_to "Delete", delete_friendship_path(friendship) %></li>
             </ul>
           </div>
         </div>

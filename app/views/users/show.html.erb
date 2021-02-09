@@ -1,11 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron jumbotron-fluid " >
-  <div class="container">
-    <h1 class="display-4">Profile Header</h1>
-    <%# <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> %>
-  </div>
-</div>
+<!--- Renders the text/heading on the Jumbo header  -->
+<% @banner_title = 'Profile' %>
+
+<!--- Jumbo header  -->
+<%= render "users/profileheader"%>
 
 <div class="container-fluid gedf-wrapper mt-5">
 
@@ -121,15 +120,31 @@
     <!--- third column  -->
     <div class="col-md-3">
 
-    <h2> Friends </h2>
-    <ul>
-      <%for friendship in @user.friendships %>
-        <li>
-          <%=h friendship.friend.username%>
-          (<%= link_to "remove", friendship, :method => :destroy %>)
-        </li>
-        <%end%>
+      <div class="card" >
+        <div class="card-header">
+            <h4>Friends</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <%for friendship in @user.friendships %>
+            <li class="list-group-item">
+              <%=friendship.friend.username%>
+            </li>
+          <%end%>
 
+          <% @inversefriendships.each do |friendship| %>
+            <% if friendship.status === 't' %>
+              <li class="list-group-item">
+                <%= friendship.user.username %>
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+
+    <ul>
+      
+
+    <% if false %>
     <h2>Users Who Have Befriended You</h2>
     <ul>
       <% for user in @user.inverse_friends %>
@@ -138,6 +153,7 @@
     </ul>
     <%= link_to 'Edit', edit_user_path(@user) %> |
     <%= link_to 'Back', users_path %>
+    <% end %>
 
     </div>
 
