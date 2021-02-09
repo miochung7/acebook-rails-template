@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @posts = Post.all #this is needed to display user posts on each users "show" page (-sarah)
+    @comment = Comment.new
     @inversefriendships = current_user.inverse_friendships
     @friendships = current_user.friendships
   end
