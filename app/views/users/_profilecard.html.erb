@@ -14,7 +14,9 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <div class="h6 text-muted">Friends</div>
-                <%= current_user.friendships.count + current_user.inverse_friends.count %>
+               
+
+               <%= current_user.friendships.count + current_user.inverse_friends.count %> 
             
             </li>
             <li class="list-group-item"> <%= link_to 'Edit', edit_user_path(current_user),class:"btn btn-primary btn-block" %>
