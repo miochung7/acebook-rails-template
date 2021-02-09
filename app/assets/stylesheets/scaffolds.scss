@@ -1,6 +1,7 @@
-
-
-p, ol, ul, td {
+p,
+ol,
+ul,
+td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -12,7 +13,6 @@ pre {
   font-size: 11px;
 }
 
-
 th {
   padding-bottom: 5px;
 }
@@ -22,7 +22,8 @@ td {
 }
 
 div {
-  &.field, &.actions {
+  &.field,
+  &.actions {
     margin-bottom: 10px;
   }
 }
@@ -32,8 +33,9 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
+  padding: 4px;
+  background-color: rgb(242, 108, 108);
+  border-radius: 1px;
 }
 
 #error_explanation {
