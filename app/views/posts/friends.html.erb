@@ -1,0 +1,79 @@
+<div class="container-fluid gedf-wrapper mt-5">
+   <div class="row">
+  <div class="col-md-3">
+    <!--- profile card -->
+    <%= render "users/profilecard"%>
+  </div>
+
+<div class="col-md-6 gedf-main">
+ 
+<% @friendships.each do |friendship| %>
+  <% friendship.friend.posts.each do |friendship|%>
+  <div class="card gedf-card mb-3">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="mr-2">
+            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+          </div>
+  
+          <div class="ml-2">
+            <div class="h5 m-0">@<%= friendship.user.username %></div> 
+            <div class="h7 text-muted"><%= friendship.post%></div> 
+          </div>
+        </div>
+  
+        <div>
+          <div class="dropdown">
+            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-h"></i>
+            </button>
+  
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1"> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-body">
+      <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= time_ago_in_words(friendship.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h')%> ago</div>
+      <a class="card-link" href="#">
+  
+        <h5 class="card-title"><%= friendship.post %></h5>
+        <p class="card-text"> <!--text goes here--></p>
+  
+      </a>
+    </div>
+  
+    <div class="comment-box">
+       <%= form_for @comment do |f| %>
+         <%= f.hidden_field :user_id, value: current_user.id %>
+         <%= f.hidden_field :post_id, value: friendship.id %>
+         <div class="input-group-append">
+         <%= f.text_field :body, placeholder: "Write a comment..." %>
+         <div class="input-group-append">
+         <%= f.submit "Post", class: "small-btn btn-success" %>
+         </div>
+         </div>
+        <% end %>
+       </div>
+        
+          <% friendship.comments.each do |comment| %>
+            <strong class="comments-username"><%= comment.user.username %></strong>
+            <div class="comments"><%= comment.body %></div>
+            <div class="comments-time text-muted">
+            <%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago
+            </div>
+          <% end %>
+    <div class="card-footer">
+      <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+      <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+    </div>
+  
+  </div>
+  <% end %>
+  <% end %>
+  </div>
+  </div>
+  </div>
