@@ -120,7 +120,17 @@
     <!--- third column  -->
     <div class="col-md-3">
 
-    <h2> Friends </h2>
+      <div class="card" >
+        <div class="card-header">
+            <h4>Friends</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+
     <ul>
       <%for friendship in @user.friendships %>
         <li>
@@ -129,6 +139,7 @@
         </li>
         <%end%>
 
+    <% if false %>
     <h2>Users Who Have Befriended You</h2>
     <ul>
       <% for user in @user.inverse_friends %>
@@ -137,6 +148,7 @@
     </ul>
     <%= link_to 'Edit', edit_user_path(@user) %> |
     <%= link_to 'Back', users_path %>
+    <% end %>
 
     </div>
 

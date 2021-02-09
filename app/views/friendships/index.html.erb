@@ -10,7 +10,6 @@
     <% # Displays the list of friends of both relationships if status equals to true %>
     <h4> Your Friends List</h4>
 
-    <!--line 16 to 30 doesn't display on browser not sure what it does -sarah -->
     <div class="row row-cols-3">
     <% @friendships.each do |friendship| %>
       <% if friendship.status === 't' %>
