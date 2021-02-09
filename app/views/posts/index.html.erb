@@ -2,8 +2,34 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-<%= render "posts/feeds"%>
 
 
 
-<%= link_to 'New Post', new_post_path %>
+<div class="container-fluid gedf-wrapper mt-5">
+
+        <div class="row">
+
+             <!--- First column  -->
+            <div class="col-md-3">
+
+              <!--- profile card -->
+              <%= render "users/profilecard"%>
+                
+            </div>
+            
+
+
+            <!--- Second column  -->
+            <div class="col-md-6 gedf-main">
+
+                <!--- create New Post Button-->
+
+                 <%= link_to "Create a new Post", new_post_path, class:"btn btn-primary btn-block py-2 mb-3" %>
+                
+                
+                <!-- Profile posts-->
+
+                <%= render "posts/feeds"%>
+
+            </div>
+

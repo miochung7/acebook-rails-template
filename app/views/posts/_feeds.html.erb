@@ -8,9 +8,9 @@
           <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
         </div>
 
-        <div class="ml-2">
+        <div class="ml-2">  
           <div class="h5 m-0">@<%= post.user.username %></div> <!--post.user.username-->
-          <div class="h7 text-muted"><%= post.user.first_name %><%= post.user.last_name %></div> <!-- post.user.first_name  post.user.last_name-->
+          <div class="h7 text-muted"><%= post.user.first_name %> <%= post.user.last_name %></div> <!-- post.user.first_name  post.user.last_name-->
         </div>
       </div>
 
@@ -33,39 +33,55 @@
 
   <div class="card-body">
     <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= time_ago_in_words(post.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h')%> ago</div>
-    <a class="card-link" href="#">
 
       <h5 class="card-title"><%= post.post %></h5>
       <p class="card-text"> <!--text goes here--></p>
 
-    </a>
   </div>
 
-  <div class="comment-box">
-     <%= form_for @comment do |f| %>
-       <%= f.hidden_field :user_id, value: current_user.id %>
-       <%= f.hidden_field :post_id, value: post.id %>
-       <div class="input-group-append">
-       <%= f.text_field :body, placeholder: "Write a comment..." %>
-       <div class="input-group-append">
-       <%= f.submit "Post", class: "small-btn btn-success" %>
-       </div>
-       </div>
-      <% end %>
-     </div>
-      
-        <% post.comments.each do |comment| %>
-          <strong class="comments-username"><%= comment.user.username %></strong>
-          <div class="comments"><%= comment.body %></div>
-          <div class="comments-time text-muted">
-          <%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago
-          </div>
-        <% end %>
   <div class="card-footer">
     <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
     <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
   </div>
+  
+  <div class="comment-box">
+     <%= form_for @comment do |f| %>
+       <%= f.hidden_field :user_id, value: current_user.id %>
+       <%= f.hidden_field :post_id, value: post.id %>
+       <div class="card comment-input">
+       <%= f.text_field :body, placeholder: "Write a comment..." %>
+       </div>
+      <% end %>
+  </div>
+ 
+
+
+   <% post.comments.each do |comment| %>
+   <div class="d-flex align-items-left pt-2 pl-3 border-bottom">
+  
+      <div class="mr-2"> 
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+      </div>
+     
+      <div class="ml-2"> 
+         
+          <strong class="d-block text-gray-dark">@<%= comment.user.username %></strong>
+          <%= comment.body %>
+          <br>
+          <small class="text-muted"><%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago</small>
+       
+      </div>
+    </div>
+
+    <% end %>
+    
+
 
 </div>
+
+  
+
 <% end %>
 <% end %>
+
+
