@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
     
 
     if @comment.save
-      redirect_to posts_path, flash: { success: 'Comment was created successfully!'}
+      redirect_back fallback_location: friendly_path, flash: { success: 'Comment was created successfully!'}
     else  
-      redirect_to posts_path, flash: { danger: 'Post was not saved'}
+      redirect_back fallback_location: friendly_path, flash: { danger: 'Post was not saved'}
     end
   end
 
