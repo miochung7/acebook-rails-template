@@ -12,3 +12,8 @@
 //
 //= require rails-ujs
 //= require_tree .
+
+$("#alert").fadeOut(3000);
+$(document).ready(function () {
+  $("#.alert").html("This is Hello World by JQuery");
+});

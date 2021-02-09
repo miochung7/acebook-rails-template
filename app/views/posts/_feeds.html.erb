@@ -46,8 +46,7 @@
     <a href="#" class="card-link" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-comment" ></i> Comment</a>
   </div>
     
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
+
       <div class="comment-box">
       <%= form_for @comment do |f| %>
        <%= f.hidden_field :user_id, value: current_user.id %>
@@ -58,8 +57,7 @@
       </div>
       <% end %>
       </div>
-   </div>
-  </div>
+
  
 
 
