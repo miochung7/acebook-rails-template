@@ -85,7 +85,7 @@
 
       <h4> Pending Friend Response</h4>
       <% @friendships.each do |friendship| %>
-        <% if current_user.id != friendship.friend.id %>
+        <% if current_user.id === friendship.user.id && friendship.status != 't'%>
 
             <div class="card mb-2" style="width: 18rem;">
               <div class="card-header">
