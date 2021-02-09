@@ -22,6 +22,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= friendship.friend.first_name %> <%= friendship.friend.last_name %></li>
               <li class="list-group-item"><%= link_to 'Show', friendship.friend %></li>
+              <li class="list-group-item"><%= link_to "Delete Friend", friendship_path(friendship), :method => :delete %></li>
             </ul>
           </div>
         </div>
@@ -41,6 +42,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= friendship.user.first_name %> <%= friendship.user.last_name %></li>
               <li class="list-group-item"><%= link_to 'Show', friendship.user %></li>
+              <li class="list-group-item"><%= link_to "Delete", delete_friendship_path(friendship) %></li>
             </ul>
           </div>
         </div>

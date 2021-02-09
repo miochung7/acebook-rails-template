@@ -125,19 +125,24 @@
             <h4>Friends</h4>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <%for friendship in @user.friendships %>
+            <li class="list-group-item">
+              <%=friendship.friend.username%>
+            </li>
+          <%end%>
+
+          <% @inversefriendships.each do |friendship| %>
+            <% if friendship.status === 't' %>
+              <li class="list-group-item">
+                <%= friendship.user.username %>
+              </li>
+            <%end%>
+          <%end%>
         </ul>
       </div>
 
     <ul>
-      <%for friendship in @user.friendships %>
-        <li>
-          <%=h friendship.friend.username%>
-          (<%= link_to "remove", friendship, :method => :destroy %>)
-        </li>
-        <%end%>
+      
 
     <% if false %>
     <h2>Users Who Have Befriended You</h2>

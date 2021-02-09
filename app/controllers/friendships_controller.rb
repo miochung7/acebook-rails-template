@@ -21,7 +21,8 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.friendship.find(params[:friend_id])
+    @friendship = current_user.friendships.find(params[:id])
+    @inversefriendship = current_user.inverse_friendships.find(params[:user_id])
     @friendship.destroy
     flash[:notice]= "successfully deleted friend"
     redirect_to root_url
@@ -34,12 +35,12 @@ class FriendshipsController < ApplicationController
   def accept
     @friendship = current_user.inverse_friendships.find(params[:id])
     @friendship.update(status: true)
-    redirect_to root_url
+    redirect_back fallback_location: root_path
   end
   
   def decline
     @friendship = current_user.inverse_friendships.find(params[:id])
     @friendship.destroy
-    redirect_to root_url
+    redirect_back fallback_location: root_path
   end
 end

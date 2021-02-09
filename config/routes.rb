@@ -8,6 +8,13 @@ Rails.application.routes.draw do
       put :accept
       delete :decline
     end
+
+    get '/delete', to: 'friends#delete', on: :member
+    member do 
+        patch :accept
+      put :accept
+      delete :decline
+    end
   end
 
   resources :users
