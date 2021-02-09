@@ -71,6 +71,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def friends
+    # @friendship = current_user.friendship.find(friend_id)
+    # @status = current_user.friendships
+    @friendships = current_user.friendships
+    @friendposts = Post.where(:user_id => current_user.friends)
+    @inversefriendships = current_user.inverse_friendships
+    @posts = Post.order("created_at DESC")
+    @comment = Comment.new
+    @post = current_user.posts.build
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
