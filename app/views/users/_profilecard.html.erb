@@ -16,7 +16,7 @@
                 <div class="h6 text-muted">Friends</div>
                
 
-               <%= current_user.friendships.count + current_user.inverse_friends.count %> 
+              <div class="h5"><%= current_user.friend_count %></div>
             
             </li>
             <li class="list-group-item"> <%= link_to 'Edit', edit_user_path(current_user),class:"btn btn-primary btn-block" %>
