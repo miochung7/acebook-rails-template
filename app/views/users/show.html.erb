@@ -162,14 +162,14 @@
         <ul class="list-group list-group-flush">
           <%for friendship in @user.friendships %>
             <li class="list-group-item">
-              <%=friendship.friend.username%>
+              @<%=friendship.friend.username%>
             </li>
           <%end%>
 
           <% @inversefriendships.each do |friendship| %>
             <% if friendship.status === 't' %>
               <li class="list-group-item">
-                <%= friendship.user.username %>
+                @<%= friendship.user.username %>
               </li>
             <%end%>
           <%end%>
@@ -178,17 +178,6 @@
 
     <ul>
       
-
-    <% if false %>
-    <h2>Users Who Have Befriended You</h2>
-    <ul>
-      <% for user in @user.inverse_friends %>
-      <li><%= h user.username %><%= link_to "accept", friendships_path(current_user, @friend), :method => :put %></li>
-      <% end %>
-    </ul>
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %>
-    <% end %>
 
     </div>
 
