@@ -161,9 +161,11 @@
         </div>
         <ul class="list-group list-group-flush">
           <%for friendship in @user.friendships %>
+            <% if friendship.status === 't' %>
             <li class="list-group-item">
               @<%=friendship.friend.username%>
             </li>
+            <%end%>
           <%end%>
 
           <% @inversefriendships.each do |friendship| %>
