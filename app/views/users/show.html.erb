@@ -168,7 +168,7 @@
             <%end%>
           <%end%>
 
-          <% @inversefriendships.each do |friendship| %>
+          <% for friendship in @user.inverse_friendships%>
             <% if friendship.status === 't' %>
               <li class="list-group-item">
                 @<%= friendship.user.username %>
