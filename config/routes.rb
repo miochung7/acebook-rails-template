@@ -11,13 +11,13 @@ Rails.application.routes.draw do
 
     get '/delete', to: 'friends#delete', on: :member
     member do 
-        patch :accept
+      patch :accept
       put :accept
       delete :decline
     end
   end
 
-  resources :users
+  resources :users 
   resources :sessions, only: [:new, :create, :destroy]
   root 'home#index'
 

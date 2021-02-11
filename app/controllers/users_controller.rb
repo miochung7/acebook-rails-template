@@ -6,15 +6,22 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
+
+  
   def index
     @users = User.all
-    
+    @friendshipssql = User.joins(:friendships).where("friendships.status = 't'")
+    @friendships = current_user.friendships
+    @friendship = current_user.friendships.build([friend_id: :friend_id])
   end
+
+
 
   # GET /users/1
   # GET /users/1.json
   def show
     @posts = Post.all #this is needed to display user posts on each users "show" page (-sarah)
+    @comment = Comment.new
     @inversefriendships = current_user.inverse_friendships
     @friendships = current_user.friendships
   end
