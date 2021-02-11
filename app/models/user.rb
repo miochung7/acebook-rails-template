@@ -16,4 +16,8 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
+  def friend_count
+    friendships.where(status: true).count + inverse_friendships.where(status: true).count
+  end
+
 end
