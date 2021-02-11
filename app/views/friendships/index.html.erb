@@ -15,7 +15,7 @@
       <% if friendship.status === 't' %>
         <div class="col mb-5">  
           <div class="card" style="width: 12rem;">
-            <img src="https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png" class="card-img-top" alt="...">
+            <img class="card-img-top" src="https://picsum.photos/id/<%= 1000 +  friendship.friend.id%>/200/200" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';"  alt="profil-pic" class="card-img-top" >
             <div class="card-body bg-dark text-white">
               <h5 class="card-title ">@<%= friendship.friend.username %></h5>
             </div>
@@ -35,7 +35,7 @@
       <% if friendship.status === 't' %>
         <div class="col mb-5">
           <div class="card" style="width: 12rem;">
-            <img src="https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png" class="card-img-top" alt="...">
+            <img class="card-img-top" src="https://picsum.photos/id/<%= 1000 +  friendship.user.id%>/200/200" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';" alt="profile-pic" class="card-img-top" >
             <div class="card-body bg-dark text-white">
               <h5 class="card-title ">@<%= friendship.user.username %></h5>
             </div>
@@ -85,7 +85,7 @@
 
       <h4> Pending Friend Response</h4>
       <% @friendships.each do |friendship| %>
-        <% if current_user.id != friendship.friend.id %>
+        <% if current_user.id === friendship.user.id && friendship.status != 't'%>
 
             <div class="card mb-2" style="width: 18rem;">
               <div class="card-header">

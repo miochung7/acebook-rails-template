@@ -34,5 +34,11 @@ class User < ApplicationRecord
       User.new(result)
     end
   end
+
+  def friend_count
+    friendships.where(status: true).count + inverse_friendships.where(status: true).count
+  end
+
+
 end
 

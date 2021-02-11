@@ -5,10 +5,10 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex justify-content-between align-items-center">
         <div class="mr-2">
-          <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+          <img class="rounded-circle" width="45" src="https://picsum.photos/id/<%= 1000 + post.user.id%>/100/100" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';" alt="profile pic">
         </div>
 
-        <div class="ml-2">  
+        <div class="ml-2">
           <div class="h5 m-0">@<%= post.user.username %></div> <!--post.user.username-->
           <div class="h7 text-muted"><%= post.user.first_name %> <%= post.user.last_name %></div> <!-- post.user.first_name  post.user.last_name-->
         </div>
@@ -42,10 +42,24 @@
 
 
   <div class="card-footer">
-    <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+    <a class="card-link">
+      <i class="fa fa-gittip"></i>
+
+      <% pre_like = post.likes.find {|like| like.user_id == current_user.id}%>
+
+      <%if pre_like%>
+        <%= link_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+      <%else%>
+        <%= link_to 'Like', post_likes_path(post), method: :post %>
+      <%end%>
+    </a>
+
+
     <a href="#" class="card-link" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ><i class="fa fa-comment" ></i> Comment</a>
+    <!--Like Count-->
+    <%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%>
   </div>
-    
+
 
       <div class="comment-box">
       <%= form_for @comment do |f| %>
@@ -53,28 +67,27 @@
        <%= f.hidden_field :post_id, value: post.id %>
        <div class="card comment-input">
         <%= f.text_field :body, placeholder: "Write a comment..." %>
-       </div>
       </div>
       <% end %>
       </div>
 
- 
+
 
 
    <% post.comments.each do |comment| %>
    <div class="d-flex align-items-left pt-2 pl-3 border-bottom">
-  
-      <div class="mr-2"> 
+
+      <div class="mr-2">
         <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
       </div>
-     
-      <div class="ml-2"> 
-         
+
+      <div class="ml-2">
+
           <strong class="d-block text-gray-dark">@<%= comment.user.username %></strong>
           <%= comment.body %>
           <br>
           <small class="text-muted"><%= time_ago_in_words(comment.created_at, :limit => 1.day.ago).gsub('about','').gsub(/ mi.*/, 'm').gsub(/ h.*/, 'h').gsub(/ a.*/, ' 1m')%> ago</small>
-       
+
       </div>
     </div>
 
@@ -84,5 +97,3 @@
 
 <% end %>
 <% end %>
-
-
