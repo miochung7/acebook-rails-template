@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @users = User.all
     @friendshipssql = User.joins(:friendships).where("friendships.status = 't'")
     @friendships = current_user.friendships
+    @inversefriendships = current_user.inverse_friendships
     @friendship = current_user.friendships.build([friend_id: :friend_id])
   end
 

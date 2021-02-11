@@ -21,7 +21,7 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><%= user.first_name %> <%= user.last_name %></li>
-        <li class="list-group-item"><%= link_to 'Show', user %></li>
+        <li class="list-group-item"><%= link_to 'Show', user_path(user) %></li>
         <li class="list-group-item"><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
       </ul>
     </div>
@@ -29,6 +29,8 @@
 
   <% end %>
   <% end %>
+
+
 
 </div>
 

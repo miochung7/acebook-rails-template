@@ -25,8 +25,8 @@ class User < ApplicationRecord
       WHERE id NOT IN(
         (SELECT DISTINCT("friends".id)
       FROM "friendships"
-      INNER JOIN "users" ON friendships.user_id = users.id
-      INNER JOIN "users" friends ON friendships.friend_id = friends.id
+      INNER JOIN "users" ON friendships.user_id = users.id OR friendships.friend_id = users.id
+      INNER JOIN "users" friends ON friendships.friend_id = friends.id OR friendships.user_id = friends.id
       WHERE users.id = '#{id}'
     ));
     SQL
