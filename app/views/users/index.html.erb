@@ -8,7 +8,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row row-cols-5 mb-5">
-
+<%= User.find(1).results %>
 <% @users.each do |user| %>
 <% if current_user.id != user.id %>
 
