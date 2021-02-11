@@ -5,7 +5,7 @@
 
             <!--profile pic-->
             <div class="mr-2">
-                <img class="rounded-circle" width="90" src="https://picsum.photos/50/50" alt="profile-pic">
+                <img class="rounded-circle" width="90" src="https://picsum.photos/id/<%= 1000 + current_user.id%>/100/100" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';" alt="profile-pic">
             </div>
 
             <div class="h7 text-muted">Name: <%= current_user.first_name %> <%= current_user.last_name %></div>

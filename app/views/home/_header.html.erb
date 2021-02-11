@@ -14,7 +14,7 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to 'Feed', posts_path, class:"nav-link" %>
+        <%= link_to 'Feed', friendly_path, class:"nav-link" %>
       </li>
 
       <li class="nav-item">
@@ -24,13 +24,14 @@
       <li class="nav-item">
         <%= link_to 'Users', users_path, class:"nav-link" %>
       </li>
-      
+
+  
 
     </ul>
-    <%# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> %>
+
+   
+    <%= link_to 'Global Feed', posts_path, class:"nav-link navbar-text" %>
+  
 
     <% if current_user %>
 

@@ -20,7 +20,7 @@
 
             <!--profile pic-->
             <div class="mr-2">
-                <img class="rounded-circle" width="90" src="https://picsum.photos/50/50" alt="profile-pic">
+                <img class="rounded-circle" width="90" src="https://picsum.photos/id/<%= 1000 + @user.id%>/100/100" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';" alt="profile-pic">
             </div>
 
             <div class="h7 text-muted">Name: <%= @user.first_name %> <%= @user.last_name %></div>
@@ -29,7 +29,7 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
                 <div class="h6 text-muted">Friends</div>
-                <div class="h5"><%= current_user.friend_count %></div>
+                <div class="h5"><%= @user.friend_count %></div>
             </li>
         </ul>
       </div>
@@ -52,7 +52,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="mr-2">
-                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                    <img class="rounded-circle" width="45" src="https://picsum.photos/id/<%= 1000 + post.user.id%>/100/100" onerror="this.onerror=null;this.src='https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png';" alt="profile-pic">
                 </div>
                 
                 <div class="ml-2">
@@ -161,12 +161,14 @@
         </div>
         <ul class="list-group list-group-flush">
           <%for friendship in @user.friendships %>
+            <% if friendship.status === 't' %>
             <li class="list-group-item">
               @<%=friendship.friend.username%>
             </li>
+            <%end%>
           <%end%>
 
-          <% @inversefriendships.each do |friendship| %>
+          <% for friendship in @user.inverse_friendships%>
             <% if friendship.status === 't' %>
               <li class="list-group-item">
                 @<%= friendship.user.username %>
