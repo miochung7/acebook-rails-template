@@ -1,12 +1,13 @@
 
 <!-- Logged in alert -->
-
+<% if flash[:success]%>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <p id="notice"> <%=notice%> </p>
-
+  
+  <p> Logged in! </p>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+<% end %>
 </div>
 
 

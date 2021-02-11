@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
 
+
   def users_not_friends_with
     
     sql = <<-SQL
