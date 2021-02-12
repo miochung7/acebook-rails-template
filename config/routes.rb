@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :posts
   get '/posts', to: 'posts#index'
 
-  get '/friendly', :controller => 'posts', :action => 'friends'
+  get '/feeds', :controller => 'posts', :action => 'friends'
 
   resources :post do
     resources :likes
