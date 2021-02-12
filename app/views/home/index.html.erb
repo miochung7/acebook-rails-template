@@ -1,18 +1,30 @@
+<!--- Renders the text/heading on the Jumbo header  -->
+<% @banner_title = 'Profile' %>
 
 <!-- Logged in alert -->
 <% if flash[:success]%>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  
-  <p> Logged in! </p>
+<div class="alert alert-success alert-dismissible fade show position-absolute" role="alert">
+  <p>You are logged in! <p>
+
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-<% end %>
+
 </div>
 
 
-<!--- Renders the text/heading on the Jumbo header  -->
-<% @banner_title = 'Profile' %>
+<% elsif flash[:friend]%>
+<div class="alert alert-success alert-dismissible fade show position-absolute" role="alert">
+  <p>Friend Request Sent <p>
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+<% end %>
+
+
+
 
 
 <% if current_user %>
